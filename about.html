@@ -1,0 +1,432 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>About — Matheesha Prabhath</title>
+  <link rel="stylesheet" href="assets/css/style.css" />
+  <style>
+    .page-hero {
+      padding: 6rem 3rem 5rem;
+      display: grid;
+      grid-template-columns: 1fr 1.2fr;
+      gap: 6rem;
+      align-items: start;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .page-title {
+      font-family: var(--font-display);
+      font-size: clamp(3rem, 6vw, 5.5rem);
+      font-weight: 800;
+      letter-spacing: -0.04em;
+      line-height: 0.95;
+      margin-bottom: 1.5rem;
+    }
+
+    .page-title .outline {
+      -webkit-text-stroke: 1px rgba(240,237,232,0.2);
+      color: transparent;
+    }
+
+    .hero-bio {
+      padding-top: 1rem;
+    }
+
+    .bio-text {
+      font-size: 1rem;
+      color: var(--text-sub);
+      line-height: 1.75;
+      margin-bottom: 1.5rem;
+    }
+
+    .profile-placeholder {
+      width: 100%;
+      aspect-ratio: 3/4;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      max-width: 300px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .profile-placeholder::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(135deg, transparent 40%, rgba(200,240,74,0.04));
+    }
+
+    .profile-placeholder-text {
+      font-family: var(--font-display);
+      font-size: 0.7rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--text-muted);
+      text-align: center;
+      padding: 1.5rem;
+    }
+
+    /* ─── EDUCATION ─── */
+    .education {
+      padding: 6rem 3rem;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .edu-list {
+      margin-top: 2.5rem;
+      display: flex;
+      flex-direction: column;
+      gap: 0;
+    }
+
+    .edu-item {
+      display: grid;
+      grid-template-columns: 160px 1fr;
+      gap: 3rem;
+      padding: 2.5rem 0;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .edu-item:first-child { padding-top: 0; }
+    .edu-item:last-child { border-bottom: none; padding-bottom: 0; }
+
+    .edu-year {
+      font-family: var(--font-display);
+      font-size: 0.72rem;
+      font-weight: 600;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--text-muted);
+      padding-top: 0.2rem;
+    }
+
+    .edu-degree {
+      font-family: var(--font-display);
+      font-size: 1.1rem;
+      font-weight: 800;
+      letter-spacing: -0.02em;
+      margin-bottom: 0.3rem;
+    }
+
+    .edu-school {
+      font-size: 0.85rem;
+      color: var(--accent);
+      font-family: var(--font-display);
+      font-weight: 600;
+      margin-bottom: 0.4rem;
+    }
+
+    .edu-note {
+      font-size: 0.8rem;
+      color: var(--text-muted);
+    }
+
+    /* ─── SKILLS SECTION ─── */
+    .skills-section {
+      padding: 6rem 3rem;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .skills-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1px;
+      background: var(--border);
+      margin-top: 2.5rem;
+    }
+
+    .skill-group {
+      background: var(--surface);
+      padding: 2rem;
+    }
+
+    .skill-group-title {
+      font-family: var(--font-display);
+      font-size: 0.7rem;
+      font-weight: 700;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 1.2rem;
+    }
+
+    .skill-list {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 0.6rem;
+    }
+
+    .skill-list li {
+      font-size: 0.9rem;
+      color: var(--text-sub);
+      display: flex;
+      align-items: center;
+      gap: 0.6rem;
+    }
+
+    .skill-list li::before {
+      content: '';
+      width: 5px; height: 5px;
+      border-radius: 50%;
+      background: var(--border);
+      flex-shrink: 0;
+    }
+
+    /* ─── ACHIEVEMENTS ─── */
+    .achievements {
+      padding: 6rem 3rem;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .achievement-list {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1px;
+      background: var(--border);
+      margin-top: 2.5rem;
+    }
+
+    .achievement-item {
+      background: var(--surface);
+      padding: 2rem;
+    }
+
+    .achievement-icon {
+      font-size: 1.5rem;
+      margin-bottom: 1rem;
+    }
+
+    .achievement-title {
+      font-family: var(--font-display);
+      font-size: 0.92rem;
+      font-weight: 800;
+      letter-spacing: -0.01em;
+      margin-bottom: 0.4rem;
+    }
+
+    .achievement-org {
+      font-size: 0.78rem;
+      color: var(--text-muted);
+      font-family: var(--font-display);
+    }
+
+    /* ─── DOWNLOAD CV ─── */
+    .cv-section {
+      padding: 6rem 3rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 2rem;
+    }
+
+    .cv-title {
+      font-family: var(--font-display);
+      font-size: clamp(1.5rem, 3vw, 2.2rem);
+      font-weight: 800;
+      letter-spacing: -0.03em;
+    }
+
+    @media (max-width: 900px) {
+      .page-hero { grid-template-columns: 1fr; gap: 3rem; padding: 4rem 1.5rem; }
+      .education, .skills-section, .achievements, .cv-section { padding-left: 1.5rem; padding-right: 1.5rem; }
+      .edu-item { grid-template-columns: 1fr; gap: 0.5rem; }
+      .skills-grid { grid-template-columns: 1fr; }
+      .achievement-list { grid-template-columns: 1fr; }
+      .cv-section { flex-direction: column; align-items: flex-start; }
+    }
+  </style>
+</head>
+<body>
+
+<nav>
+  <a href="index.html" class="nav-logo">MP<span>.</span></a>
+  <ul class="nav-links">
+    <li><a href="index.html">Home</a></li>
+    <li><a href="work.html">Work</a></li>
+    <li><a href="creative.html">Creative</a></li>
+    <li><a href="about.html" class="active">About</a></li>
+    <li><a href="contact.html">Contact</a></li>
+  </ul>
+</nav>
+
+<main>
+  <section class="page-hero">
+    <div>
+      <span class="section-label fade-up">About</span>
+      <h1 class="page-title fade-up delay-1">
+        The<br>person<br><span class="outline">behind it.</span>
+      </h1>
+    </div>
+
+    <div class="hero-bio fade-up delay-2">
+      <p class="bio-text">
+        I'm Matheesha Prabhath — a fresh graduate from SLIIT with a BSc (Hons) in Information Technology specializing in Software Engineering. Born and raised in Passara, Sri Lanka.
+      </p>
+      <p class="bio-text">
+        I got into software because I wanted to build things that actually work and matter. Over time, I picked up creative skills in video editing and design, which turned out to be just as valuable as the code — clients always need someone who can do both.
+      </p>
+      <p class="bio-text">
+        Outside the screen, I was a Company Sergeant Major in the National Cadet Corps and still carry that discipline into everything I do. I also played chess competitively and spent a lot of time behind a camera as a photographer for SLIIT's Faculty of Computing Media Unit.
+      </p>
+      <div style="margin-top: 1.5rem;">
+        <a href="contact.html" class="btn btn-primary">Get In Touch</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- EDUCATION -->
+  <section class="education">
+    <span class="section-label scroll-reveal">Education</span>
+
+    <div class="edu-list">
+      <div class="edu-item scroll-reveal">
+        <div class="edu-year">2020 — 2025</div>
+        <div>
+          <div class="edu-degree">BSc (Hons) in Information Technology</div>
+          <div class="edu-school">Sri Lanka Institute of Information Technology (SLIIT)</div>
+          <div class="edu-note">Specialization in Software Engineering</div>
+        </div>
+      </div>
+
+      <div class="edu-item scroll-reveal">
+        <div class="edu-year">2018</div>
+        <div>
+          <div class="edu-degree">GCE Advanced Level</div>
+          <div class="edu-school">Badulla Central College, Badulla</div>
+          <div class="edu-note">Technology Stream — Exam No. 3611310</div>
+        </div>
+      </div>
+
+      <div class="edu-item scroll-reveal">
+        <div class="edu-year">2015</div>
+        <div>
+          <div class="edu-degree">GCE Ordinary Level</div>
+          <div class="edu-school">Badulla Central College, Badulla</div>
+          <div class="edu-note">Exam No. 55048722</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SKILLS -->
+  <section class="skills-section">
+    <span class="section-label scroll-reveal">Skills</span>
+
+    <div class="skills-grid">
+      <div class="skill-group scroll-reveal">
+        <div class="skill-group-title">Programming</div>
+        <ul class="skill-list">
+          <li>JavaScript (ES6+)</li>
+          <li>Java</li>
+          <li>C</li>
+          <li>Dart (Flutter)</li>
+        </ul>
+      </div>
+
+      <div class="skill-group scroll-reveal">
+        <div class="skill-group-title">Web & Frameworks</div>
+        <ul class="skill-list">
+          <li>React.js</li>
+          <li>Node.js / Express</li>
+          <li>MongoDB</li>
+          <li>HTML / CSS / Tailwind</li>
+          <li>REST API Design</li>
+        </ul>
+      </div>
+
+      <div class="skill-group scroll-reveal">
+        <div class="skill-group-title">Creative Tools</div>
+        <ul class="skill-list">
+          <li>Adobe Premiere Pro</li>
+          <li>Adobe Photoshop</li>
+          <li>Adobe After Effects</li>
+        </ul>
+      </div>
+
+      <div class="skill-group scroll-reveal">
+        <div class="skill-group-title">Dev Tools</div>
+        <ul class="skill-list">
+          <li>Git & GitHub</li>
+          <li>Postman</li>
+          <li>VS Code</li>
+          <li>Firebase</li>
+        </ul>
+      </div>
+
+      <div class="skill-group scroll-reveal">
+        <div class="skill-group-title">Mobile</div>
+        <ul class="skill-list">
+          <li>Flutter</li>
+          <li>Android (Java)</li>
+          <li>Firebase Integration</li>
+        </ul>
+      </div>
+
+      <div class="skill-group scroll-reveal">
+        <div class="skill-group-title">Soft Skills</div>
+        <ul class="skill-list">
+          <li>Critical Thinking</li>
+          <li>Team Collaboration</li>
+          <li>Quick Learning</li>
+          <li>Time Management</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- ACHIEVEMENTS -->
+  <section class="achievements">
+    <span class="section-label scroll-reveal">Achievements</span>
+
+    <div class="achievement-list">
+      <div class="achievement-item scroll-reveal">
+        <div class="achievement-icon">🏆</div>
+        <div class="achievement-title">Best Cadet Award</div>
+        <div class="achievement-org">National Cadet Corps 6NCC — 2017</div>
+      </div>
+      <div class="achievement-item scroll-reveal">
+        <div class="achievement-icon">🎖️</div>
+        <div class="achievement-title">Best Commanding (Physical Test)</div>
+        <div class="achievement-org">National Cadet Corps 6NCC — 2017</div>
+      </div>
+      <div class="achievement-item scroll-reveal">
+        <div class="achievement-icon">⭐</div>
+        <div class="achievement-title">Sergeant — 1st Place</div>
+        <div class="achievement-org">Badulla Central College, 6th Battalion NCC — 2017</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CV DOWNLOAD -->
+  <section class="cv-section scroll-reveal">
+    <div>
+      <span class="section-label">CV</span>
+      <h2 class="cv-title">Want the full picture?</h2>
+      <p style="color: var(--text-muted); font-size: 0.9rem; margin-top: 0.5rem;">Download my CV for a complete overview of my experience, education, and skills.</p>
+    </div>
+    <a href="assets/Matheesha_CV.pdf" download class="btn btn-primary" style="flex-shrink:0;">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+      Download CV
+    </a>
+  </section>
+</main>
+
+<footer>
+  <p>© 2025 Matheesha Prabhath. All rights reserved.</p>
+  <ul class="footer-links">
+    <li><a href="index.html">Home</a></li>
+    <li><a href="work.html">Work</a></li>
+    <li><a href="creative.html">Creative</a></li>
+    <li><a href="about.html">About</a></li>
+    <li><a href="contact.html">Contact</a></li>
+  </ul>
+</footer>
+
+<script src="assets/js/main.js"></script>
+</body>
+</html>
