@@ -1,459 +1,567 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Creative — Matheesha Prabhath</title>
-  <link rel="stylesheet" href="assets/css/style.css" />
-  <style>
-    .page-hero {
-      padding: 6rem 3rem 4rem;
-      border-bottom: 1px solid var(--border);
-      position: relative;
-      overflow: hidden;
-    }
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Creative — Matheesha Prabhath</title>
+    <link rel="stylesheet" href="assets/css/style.css" />
+    <style>
+      .page-hero {
+        padding: 6rem 3rem 4rem;
+        border-bottom: 1px solid var(--border);
+        position: relative;
+        overflow: hidden;
+      }
 
-    .page-hero::before {
-      content: '';
-      position: absolute;
-      top: -30%;
-      right: -10%;
-      width: 700px;
-      height: 700px;
-      background: radial-gradient(circle, rgba(74,240,200,0.05) 0%, transparent 65%);
-      pointer-events: none;
-    }
+      .page-hero::before {
+        content: "";
+        position: absolute;
+        top: -30%;
+        right: -10%;
+        width: 700px;
+        height: 700px;
+        background: radial-gradient(
+          circle,
+          rgba(74, 240, 200, 0.05) 0%,
+          transparent 65%
+        );
+        pointer-events: none;
+      }
 
-    .page-hero-inner { max-width: 720px; }
+      .page-hero-inner {
+        max-width: 720px;
+      }
 
-    .page-title {
-      font-family: var(--font-display);
-      font-size: clamp(3rem, 6vw, 5.5rem);
-      font-weight: 800;
-      letter-spacing: -0.04em;
-      line-height: 0.95;
-      margin-bottom: 1.5rem;
-    }
+      .page-title {
+        font-family: var(--font-display);
+        font-size: clamp(3rem, 6vw, 5.5rem);
+        font-weight: 800;
+        letter-spacing: -0.04em;
+        line-height: 0.95;
+        margin-bottom: 1.5rem;
+      }
 
-    .page-title .accent2 { color: var(--accent2); }
-    .page-title .outline {
-      -webkit-text-stroke: 1px rgba(240,237,232,0.2);
-      color: transparent;
-    }
+      .page-title .accent2 {
+        color: var(--accent2);
+      }
+      .page-title .outline {
+        -webkit-text-stroke: 1px rgba(240, 237, 232, 0.2);
+        color: transparent;
+      }
 
-    .page-subtitle {
-      font-size: 1rem;
-      color: var(--text-sub);
-      max-width: 500px;
-      line-height: 1.7;
-    }
+      .page-subtitle {
+        font-size: 1rem;
+        color: var(--text-sub);
+        max-width: 500px;
+        line-height: 1.7;
+      }
 
-    /* ─── SERVICES ─── */
-    .services {
-      padding: 6rem 3rem;
-      border-bottom: 1px solid var(--border);
-    }
+      /* ─── SERVICES ─── */
+      .services {
+        padding: 6rem 3rem;
+        border-bottom: 1px solid var(--border);
+      }
 
-    .services-grid {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 1px;
-      background: var(--border);
-      margin-top: 2.5rem;
-    }
+      .services-grid {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 1px;
+        background: var(--border);
+        margin-top: 2.5rem;
+      }
 
-    .service-card {
-      background: var(--surface);
-      padding: 2.5rem;
-      position: relative;
-    }
+      .service-card {
+        background: var(--surface);
+        padding: 2.5rem;
+        position: relative;
+      }
 
-    .service-icon {
-      width: 48px; height: 48px;
-      margin-bottom: 1.5rem;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      border: 1px solid var(--border);
-      color: var(--accent2);
-      font-size: 1.3rem;
-    }
+      .service-icon {
+        width: 48px;
+        height: 48px;
+        margin-bottom: 1.5rem;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border: 1px solid var(--border);
+        color: var(--accent2);
+        font-size: 1.3rem;
+      }
 
-    .service-name {
-      font-family: var(--font-display);
-      font-size: 1.15rem;
-      font-weight: 800;
-      letter-spacing: -0.02em;
-      margin-bottom: 0.8rem;
-    }
+      .service-name {
+        font-family: var(--font-display);
+        font-size: 1.15rem;
+        font-weight: 800;
+        letter-spacing: -0.02em;
+        margin-bottom: 0.8rem;
+      }
 
-    .service-desc {
-      font-size: 0.88rem;
-      color: var(--text-muted);
-      line-height: 1.65;
-      margin-bottom: 1.5rem;
-    }
+      .service-desc {
+        font-size: 0.88rem;
+        color: var(--text-muted);
+        line-height: 1.65;
+        margin-bottom: 1.5rem;
+      }
 
-    .service-tools {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 0.4rem;
-    }
+      .service-tools {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0.4rem;
+      }
 
-    .tool-chip {
-      font-family: var(--font-display);
-      font-size: 0.62rem;
-      font-weight: 700;
-      letter-spacing: 0.1em;
-      text-transform: uppercase;
-      padding: 0.25rem 0.6rem;
-      border: 1px solid var(--border);
-      color: var(--accent2);
-    }
+      .tool-chip {
+        font-family: var(--font-display);
+        font-size: 0.62rem;
+        font-weight: 700;
+        letter-spacing: 0.1em;
+        text-transform: uppercase;
+        padding: 0.25rem 0.6rem;
+        border: 1px solid var(--border);
+        color: var(--accent2);
+      }
 
-    /* ─── WORK GALLERY ─── */
-    .gallery-section {
-      padding: 6rem 3rem;
-    }
+      /* ─── WORK GALLERY ─── */
+      .gallery-section {
+        padding: 6rem 3rem;
+      }
 
-    .gallery-intro {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 4rem;
-      align-items: end;
-      margin-bottom: 3rem;
-    }
+      .gallery-intro {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 4rem;
+        align-items: end;
+        margin-bottom: 3rem;
+      }
 
-    .gallery-title {
-      font-family: var(--font-display);
-      font-size: clamp(1.8rem, 3vw, 2.8rem);
-      font-weight: 800;
-      letter-spacing: -0.03em;
-      line-height: 1;
-    }
+      .gallery-title {
+        font-family: var(--font-display);
+        font-size: clamp(1.8rem, 3vw, 2.8rem);
+        font-weight: 800;
+        letter-spacing: -0.03em;
+        line-height: 1;
+      }
 
-    .gallery-body {
-      font-size: 0.9rem;
-      color: var(--text-muted);
-      line-height: 1.7;
-    }
+      .gallery-body {
+        font-size: 0.9rem;
+        color: var(--text-muted);
+        line-height: 1.7;
+      }
 
-    /* Placeholder gallery items */
-    .gallery-grid {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      grid-template-rows: auto;
-      gap: 1px;
-      background: var(--border);
-    }
+      /* Placeholder gallery items */
+      .gallery-grid {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        grid-template-rows: auto;
+        gap: 1px;
+        background: var(--border);
+      }
 
-    .gallery-item {
-      background: var(--surface);
-      aspect-ratio: 16/9;
-      position: relative;
-      overflow: hidden;
-      cursor: pointer;
-    }
+      .gallery-item {
+        background: var(--surface);
+        aspect-ratio: 16/9;
+        position: relative;
+        overflow: hidden;
+        cursor: pointer;
+      }
 
-    .gallery-item.tall { grid-row: span 2; aspect-ratio: unset; }
+      .gallery-item.tall {
+        grid-row: span 2;
+        aspect-ratio: unset;
+      }
 
-    .gallery-item-inner {
-      width: 100%;
-      height: 100%;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      gap: 1rem;
-      background: var(--bg3);
-      transition: background 0.3s;
-      padding: 2rem;
-      min-height: 180px;
-    }
+      .gallery-item-inner {
+        width: 100%;
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        gap: 1rem;
+        background: var(--bg3);
+        transition: background 0.3s;
+        padding: 2rem;
+        min-height: 180px;
+      }
 
-    .gallery-item:hover .gallery-item-inner { background: var(--bg2); }
+      .gallery-item:hover .gallery-item-inner {
+        background: var(--bg2);
+      }
 
-    .gallery-item-icon {
-      font-size: 2rem;
-      opacity: 0.3;
-    }
+      .gallery-item-icon {
+        font-size: 2rem;
+        opacity: 0.3;
+      }
 
-    .gallery-item-label {
-      font-family: var(--font-display);
-      font-size: 0.75rem;
-      font-weight: 700;
-      letter-spacing: 0.15em;
-      text-transform: uppercase;
-      color: var(--text-muted);
-      text-align: center;
-    }
+      .gallery-item-label {
+        font-family: var(--font-display);
+        font-size: 0.75rem;
+        font-weight: 700;
+        letter-spacing: 0.15em;
+        text-transform: uppercase;
+        color: var(--text-muted);
+        text-align: center;
+      }
 
-    .gallery-item-sub {
-      font-size: 0.75rem;
-      color: var(--text-muted);
-      opacity: 0.6;
-      text-align: center;
-      font-style: italic;
-    }
+      .gallery-item-sub {
+        font-size: 0.75rem;
+        color: var(--text-muted);
+        opacity: 0.6;
+        text-align: center;
+        font-style: italic;
+      }
 
-    .upload-note {
-      margin-top: 2rem;
-      padding: 1.5rem 2rem;
-      border: 1px dashed var(--border);
-      display: flex;
-      align-items: center;
-      gap: 1rem;
-    }
+      .upload-note {
+        margin-top: 2rem;
+        padding: 1.5rem 2rem;
+        border: 1px dashed var(--border);
+        display: flex;
+        align-items: center;
+        gap: 1rem;
+      }
 
-    .upload-note p {
-      font-size: 0.85rem;
-      color: var(--text-muted);
-      line-height: 1.6;
-    }
+      .upload-note p {
+        font-size: 0.85rem;
+        color: var(--text-muted);
+        line-height: 1.6;
+      }
 
-    .upload-note strong {
-      color: var(--accent2);
-      font-family: var(--font-display);
-    }
+      .upload-note strong {
+        color: var(--accent2);
+        font-family: var(--font-display);
+      }
 
-    /* ─── PROCESS ─── */
-    .process {
-      padding: 6rem 3rem;
-      border-top: 1px solid var(--border);
-    }
+      /* ─── PROCESS ─── */
+      .process {
+        padding: 6rem 3rem;
+        border-top: 1px solid var(--border);
+      }
 
-    .process-list {
-      display: grid;
-      grid-template-columns: repeat(4, 1fr);
-      gap: 1px;
-      background: var(--border);
-      margin-top: 2.5rem;
-    }
+      .process-list {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        gap: 1px;
+        background: var(--border);
+        margin-top: 2.5rem;
+      }
 
-    .process-step {
-      background: var(--surface);
-      padding: 2rem;
-    }
+      .process-step {
+        background: var(--surface);
+        padding: 2rem;
+      }
 
-    .step-num {
-      font-family: var(--font-display);
-      font-size: 3rem;
-      font-weight: 800;
-      color: var(--border);
-      letter-spacing: -0.06em;
-      line-height: 1;
-      margin-bottom: 1rem;
-    }
+      .step-num {
+        font-family: var(--font-display);
+        font-size: 3rem;
+        font-weight: 800;
+        color: var(--border);
+        letter-spacing: -0.06em;
+        line-height: 1;
+        margin-bottom: 1rem;
+      }
 
-    .step-name {
-      font-family: var(--font-display);
-      font-size: 0.9rem;
-      font-weight: 800;
-      letter-spacing: -0.01em;
-      margin-bottom: 0.5rem;
-    }
+      .step-name {
+        font-family: var(--font-display);
+        font-size: 0.9rem;
+        font-weight: 800;
+        letter-spacing: -0.01em;
+        margin-bottom: 0.5rem;
+      }
 
-    .step-desc {
-      font-size: 0.82rem;
-      color: var(--text-muted);
-      line-height: 1.6;
-    }
+      .step-desc {
+        font-size: 0.82rem;
+        color: var(--text-muted);
+        line-height: 1.6;
+      }
 
+      @media (max-width: 768px) {
+        .page-hero,
+        .services,
+        .gallery-section,
+        .process {
+          padding: 3rem 1.5rem;
+        }
+        .page-title {
+          font-size: clamp(2.5rem, 10vw, 5rem);
+        }
+        .services-grid {
+          grid-template-columns: 1fr;
+        }
+        .gallery-intro {
+          grid-template-columns: 1fr;
+          gap: 1.5rem;
+        }
+        .gallery-grid {
+          grid-template-columns: 1fr 1fr;
+        }
+        .gallery-item.tall {
+          grid-row: auto;
+        }
+        .process-list {
+          grid-template-columns: 1fr 1fr;
+        }
+      }
+      @media (max-width: 480px) {
+        .page-hero,
+        .services,
+        .gallery-section,
+        .process {
+          padding: 2.5rem 1.2rem;
+        }
+        .gallery-grid {
+          grid-template-columns: 1fr;
+        }
+        .process-list {
+          grid-template-columns: 1fr;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <nav>
+      <a href="index.html" class="nav-logo">MP<span>.</span></a>
+      <ul class="nav-links">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="work.html">Work</a></li>
+        <li><a href="creative.html" class="active">Creative</a></li>
+        <li><a href="about.html">About</a></li>
+        <li><a href="contact.html">Contact</a></li>
+      </ul>
+      <button class="nav-hamburger" id="hamburger" aria-label="Menu">
+        <span></span><span></span><span></span>
+      </button>
+    </nav>
 
-    @media (max-width: 768px) {
-      .page-hero, .services, .gallery-section, .process { padding: 3rem 1.5rem; }
-      .page-title { font-size: clamp(2.5rem,10vw,5rem); }
-      .services-grid { grid-template-columns: 1fr; }
-      .gallery-intro { grid-template-columns: 1fr; gap: 1.5rem; }
-      .gallery-grid { grid-template-columns: 1fr 1fr; }
-      .gallery-item.tall { grid-row: auto; }
-      .process-list { grid-template-columns: 1fr 1fr; }
-    }
-    @media (max-width: 480px) {
-      .page-hero, .services, .gallery-section, .process { padding: 2.5rem 1.2rem; }
-      .gallery-grid { grid-template-columns: 1fr; }
-      .process-list { grid-template-columns: 1fr; }
-    }
-  </style>
-</head>
-<body>
-
-<nav>
-  <a href="index.html" class="nav-logo">MP<span>.</span></a>
-  <ul class="nav-links">
-    <li><a href="index.html">Home</a></li>
-    <li><a href="work.html">Work</a></li>
-    <li><a href="creative.html" class="active">Creative</a></li>
-    <li><a href="about.html">About</a></li>
-    <li><a href="contact.html">Contact</a></li>
-  </ul>
-  <button class="nav-hamburger" id="hamburger" aria-label="Menu">
-    <span></span><span></span><span></span>
-  </button>
-</nav>
-
-<!-- MOBILE MENU -->
-<div class="nav-mobile-menu" id="mobileMenu">
-  <a href="index.html">Home</a>
-  <a href="work.html">Work</a>
-  <a href="creative.html" class="active">Creative</a>
-  <a href="about.html">About</a>
-  <a href="contact.html">Contact</a>
-</div>
-
-<main>
-  <section class="page-hero">
-    <div class="page-hero-inner">
-      <span class="section-label fade-up" style="color: var(--accent2); --accent: var(--accent2);">Creative</span>
-      <h1 class="page-title">
-        <span class="fade-up delay-1">Visual.</span><br>
-        <span class="accent2 fade-up delay-2">Motion.</span><br>
-        <span class="outline fade-up delay-3">Design.</span>
-      </h1>
-      <p class="page-subtitle fade-up delay-4">
-        Beyond code, I craft compelling visual narratives — from promotional video edits to motion graphics and digital marketing assets. Tools are just tools; storytelling is the skill.
-      </p>
-    </div>
-  </section>
-
-  <!-- SERVICES -->
-  <section class="services">
-    <span class="section-label scroll-reveal" style="color: var(--accent2);">What I Do</span>
-
-    <div class="services-grid">
-      <div class="service-card scroll-reveal">
-        <div class="service-icon">
-          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><polygon points="23 7 16 12 23 17 23 7"/><rect x="1" y="5" width="15" height="14" rx="2" ry="2"/></svg>
-        </div>
-        <div class="service-name">Video Editing</div>
-        <p class="service-desc">Promotional and educational video content for social media, YouTube, and marketing campaigns. From raw footage to polished final cut.</p>
-        <div class="service-tools">
-          <span class="tool-chip">Premiere Pro</span>
-          <span class="tool-chip">After Effects</span>
-        </div>
-      </div>
-
-      <div class="service-card scroll-reveal">
-        <div class="service-icon">
-          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg>
-        </div>
-        <div class="service-name">Graphic Design</div>
-        <p class="service-desc">Social media posts, digital flyers, banners, and marketing collateral. Clean, on-brand visuals that stop the scroll.</p>
-        <div class="service-tools">
-          <span class="tool-chip">Photoshop</span>
-        </div>
-      </div>
-
-      <div class="service-card scroll-reveal">
-        <div class="service-icon">
-          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
-        </div>
-        <div class="service-name">Motion Graphics</div>
-        <p class="service-desc">Animated titles, transitions, kinetic text, and eye-catching visual effects to elevate video content and brand presence.</p>
-        <div class="service-tools">
-          <span class="tool-chip">After Effects</span>
-          <span class="tool-chip">Premiere Pro</span>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- GALLERY -->
-  <section class="gallery-section">
-    <div class="gallery-intro scroll-reveal">
-      <div>
-        <span class="section-label" style="color: var(--accent2);">Portfolio</span>
-        <h2 class="gallery-title">Selected<br>Creative Work</h2>
-      </div>
-      <p class="gallery-body">
-        A selection of video edits, graphic design pieces, and motion work created for clients and personal projects. Add your own work by replacing the placeholder slots below.
-      </p>
+    <!-- MOBILE MENU -->
+    <div class="nav-mobile-menu" id="mobileMenu">
+      <a href="index.html">Home</a>
+      <a href="work.html">Work</a>
+      <a href="creative.html" class="active">Creative</a>
+      <a href="about.html">About</a>
+      <a href="contact.html">Contact</a>
     </div>
 
-    <div class="gallery-grid">
-      <div class="gallery-item tall scroll-reveal">
-        <div class="gallery-item-inner">
-          <div class="gallery-item-icon">🎬</div>
-          <div class="gallery-item-label">Social Media Reel</div>
-          <div class="gallery-item-sub">Add your video / thumbnail here</div>
+    <main>
+      <section class="page-hero">
+        <div class="page-hero-inner">
+          <span
+            class="section-label fade-up"
+            style="color: var(--accent2); --accent: var(--accent2)"
+            >Creative</span
+          >
+          <h1 class="page-title">
+            <span class="fade-up delay-1">Visual.</span><br />
+            <span class="accent2 fade-up delay-2">Motion.</span><br />
+            <span class="outline fade-up delay-3">Design.</span>
+          </h1>
+          <p class="page-subtitle fade-up delay-4">
+            Beyond code, I craft compelling visual narratives — from promotional
+            video edits to motion graphics and digital marketing assets. Tools
+            are just tools; storytelling is the skill.
+          </p>
         </div>
-      </div>
-      <div class="gallery-item scroll-reveal">
-        <div class="gallery-item-inner">
-          <div class="gallery-item-icon">🖼️</div>
-          <div class="gallery-item-label">Digital Flyer</div>
-          <div class="gallery-item-sub">Add your design here</div>
-        </div>
-      </div>
-      <div class="gallery-item scroll-reveal">
-        <div class="gallery-item-inner">
-          <div class="gallery-item-icon">✨</div>
-          <div class="gallery-item-label">Motion Graphic</div>
-          <div class="gallery-item-sub">Add your work here</div>
-        </div>
-      </div>
-      <div class="gallery-item scroll-reveal">
-        <div class="gallery-item-inner">
-          <div class="gallery-item-icon">📸</div>
-          <div class="gallery-item-label">Photo Edit</div>
-          <div class="gallery-item-sub">Add your work here</div>
-        </div>
-      </div>
-      <div class="gallery-item scroll-reveal">
-        <div class="gallery-item-inner">
-          <div class="gallery-item-icon">▶️</div>
-          <div class="gallery-item-label">YouTube Edit</div>
-          <div class="gallery-item-sub">Add your work here</div>
-        </div>
-      </div>
-    </div>
+      </section>
 
-    <div class="upload-note scroll-reveal">
+      <!-- SERVICES -->
+      <section class="services">
+        <span class="section-label scroll-reveal" style="color: var(--accent2)"
+          >What I Do</span
+        >
+
+        <div class="services-grid">
+          <div class="service-card scroll-reveal">
+            <div class="service-icon">
+              <svg
+                width="22"
+                height="22"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="1.5"
+              >
+                <polygon points="23 7 16 12 23 17 23 7" />
+                <rect x="1" y="5" width="15" height="14" rx="2" ry="2" />
+              </svg>
+            </div>
+            <div class="service-name">Video Editing</div>
+            <p class="service-desc">
+              Promotional and educational video content for social media,
+              YouTube, and marketing campaigns. From raw footage to polished
+              final cut.
+            </p>
+            <div class="service-tools">
+              <span class="tool-chip">Premiere Pro</span>
+              <span class="tool-chip">After Effects</span>
+            </div>
+          </div>
+
+          <div class="service-card scroll-reveal">
+            <div class="service-icon">
+              <svg
+                width="22"
+                height="22"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="1.5"
+              >
+                <rect x="3" y="3" width="18" height="18" rx="2" />
+                <circle cx="8.5" cy="8.5" r="1.5" />
+                <polyline points="21 15 16 10 5 21" />
+              </svg>
+            </div>
+            <div class="service-name">Graphic Design</div>
+            <p class="service-desc">
+              Social media posts, digital flyers, banners, and marketing
+              collateral. Clean, on-brand visuals that stop the scroll.
+            </p>
+            <div class="service-tools">
+              <span class="tool-chip">Photoshop</span>
+            </div>
+          </div>
+
+          <div class="service-card scroll-reveal">
+            <div class="service-icon">
+              <svg
+                width="22"
+                height="22"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="1.5"
+              >
+                <polygon
+                  points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"
+                />
+              </svg>
+            </div>
+            <div class="service-name">Motion Graphics</div>
+            <p class="service-desc">
+              Animated titles, transitions, kinetic text, and eye-catching
+              visual effects to elevate video content and brand presence.
+            </p>
+            <div class="service-tools">
+              <span class="tool-chip">After Effects</span>
+              <span class="tool-chip">Premiere Pro</span>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- GALLERY -->
+      <section class="gallery-section">
+        <div class="gallery-intro scroll-reveal">
+          <div>
+            <span class="section-label" style="color: var(--accent2)"
+              >Portfolio</span
+            >
+            <h2 class="gallery-title">Selected<br />Creative Work</h2>
+          </div>
+          <p class="gallery-body">
+            A selection of video edits, graphic design pieces, and motion work
+            created for clients and personal projects.
+          </p>
+        </div>
+
+        <div class="gallery-grid">
+          <div class="gallery-item tall scroll-reveal">
+            <div class="gallery-item-inner">
+              <div class="gallery-item-icon">🎬</div>
+              <div class="gallery-item-label">Social Media Reel</div>
+              <div class="gallery-item-sub">
+                Add your video / thumbnail here
+              </div>
+            </div>
+          </div>
+          <div class="gallery-item scroll-reveal">
+            <div class="gallery-item-inner">
+              <div class="gallery-item-icon">🖼️</div>
+              <div class="gallery-item-label">Digital Flyer</div>
+              <div class="gallery-item-sub">Add your design here</div>
+            </div>
+          </div>
+          <div class="gallery-item scroll-reveal">
+            <div class="gallery-item-inner">
+              <div class="gallery-item-icon">✨</div>
+              <div class="gallery-item-label">Motion Graphic</div>
+              <div class="gallery-item-sub">Add your work here</div>
+            </div>
+          </div>
+          <div class="gallery-item scroll-reveal">
+            <div class="gallery-item-inner">
+              <div class="gallery-item-icon">📸</div>
+              <div class="gallery-item-label">Photo Edit</div>
+              <div class="gallery-item-sub">Add your work here</div>
+            </div>
+          </div>
+          <div class="gallery-item scroll-reveal">
+            <div class="gallery-item-inner">
+              <div class="gallery-item-icon">▶️</div>
+              <div class="gallery-item-label">YouTube Edit</div>
+              <div class="gallery-item-sub">Add your work here</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- <div class="upload-note scroll-reveal">
       <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--accent2)" stroke-width="1.5"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
       <p><strong>To fill in your portfolio:</strong> Replace the placeholder gallery items with your actual screenshots, thumbnails, or embeds. You can use <code>&lt;img&gt;</code> tags or YouTube <code>&lt;iframe&gt;</code> embeds inside each <code>.gallery-item-inner</code>.</p>
-    </div>
-  </section>
+    </div> -->
+      </section>
 
-  <!-- PROCESS -->
-  <section class="process">
-    <span class="section-label scroll-reveal" style="color: var(--accent2);">Process</span>
+      <!-- PROCESS -->
+      <section class="process">
+        <span class="section-label scroll-reveal" style="color: var(--accent2)"
+          >Process</span
+        >
 
-    <div class="process-list">
-      <div class="process-step scroll-reveal">
-        <div class="step-num">01</div>
-        <div class="step-name">Brief & Discovery</div>
-        <p class="step-desc">Understand the goal, audience, and brand guidelines before a single frame is touched.</p>
-      </div>
-      <div class="process-step scroll-reveal">
-        <div class="step-num">02</div>
-        <div class="step-name">Concept & Structure</div>
-        <p class="step-desc">Plan the narrative arc, visual style, and key moments. Storyboard when needed.</p>
-      </div>
-      <div class="process-step scroll-reveal">
-        <div class="step-num">03</div>
-        <div class="step-name">Craft & Edit</div>
-        <p class="step-desc">Execute with precision — cutting, grading, animating, and refining until it sings.</p>
-      </div>
-      <div class="process-step scroll-reveal">
-        <div class="step-num">04</div>
-        <div class="step-name">Deliver & Iterate</div>
-        <p class="step-desc">Export optimised for platform, gather feedback, and revise until the client is delighted.</p>
-      </div>
-    </div>
-  </section>
-</main>
+        <div class="process-list">
+          <div class="process-step scroll-reveal">
+            <div class="step-num">01</div>
+            <div class="step-name">Brief & Discovery</div>
+            <p class="step-desc">
+              Understand the goal, audience, and brand guidelines before a
+              single frame is touched.
+            </p>
+          </div>
+          <div class="process-step scroll-reveal">
+            <div class="step-num">02</div>
+            <div class="step-name">Concept & Structure</div>
+            <p class="step-desc">
+              Plan the narrative arc, visual style, and key moments. Storyboard
+              when needed.
+            </p>
+          </div>
+          <div class="process-step scroll-reveal">
+            <div class="step-num">03</div>
+            <div class="step-name">Craft & Edit</div>
+            <p class="step-desc">
+              Execute with precision — cutting, grading, animating, and refining
+              until it sings.
+            </p>
+          </div>
+          <div class="process-step scroll-reveal">
+            <div class="step-num">04</div>
+            <div class="step-name">Deliver & Iterate</div>
+            <p class="step-desc">
+              Export optimised for platform, gather feedback, and revise until
+              the client is delighted.
+            </p>
+          </div>
+        </div>
+      </section>
+    </main>
 
-<footer>
-  <p>© 2025 Matheesha Prabhath. All rights reserved.</p>
-  <ul class="footer-links">
-    <li><a href="index.html">Home</a></li>
-    <li><a href="work.html">Work</a></li>
-    <li><a href="creative.html">Creative</a></li>
-    <li><a href="about.html">About</a></li>
-    <li><a href="contact.html">Contact</a></li>
-  </ul>
-</footer>
+    <footer>
+      <p>© 2025 Matheesha Prabhath. All rights reserved.</p>
+      <ul class="footer-links">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="work.html">Work</a></li>
+        <li><a href="creative.html">Creative</a></li>
+        <li><a href="about.html">About</a></li>
+        <li><a href="contact.html">Contact</a></li>
+      </ul>
+    </footer>
 
-<script src="assets/js/main.js"></script>
-</body>
+    <script src="assets/js/main.js"></script>
+  </body>
 </html>
