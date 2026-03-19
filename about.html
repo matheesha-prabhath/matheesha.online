@@ -40,35 +40,34 @@
       margin-bottom: 1.5rem;
     }
 
-    .profile-placeholder {
+    .profile-photo-wrap {
       width: 100%;
-      aspect-ratio: 3/4;
-      background: var(--surface);
-      border: 1px solid var(--border);
-      display: flex;
-      align-items: center;
-      justify-content: center;
       max-width: 300px;
       position: relative;
-      overflow: hidden;
     }
 
-    .profile-placeholder::before {
+    .profile-photo-wrap::after {
       content: '';
       position: absolute;
-      inset: 0;
-      background: linear-gradient(135deg, transparent 40%, rgba(200,240,74,0.04));
+      bottom: -8px; right: -8px;
+      width: 60%; height: 60%;
+      border-right: 2px solid var(--accent);
+      border-bottom: 2px solid var(--accent);
+      pointer-events: none;
     }
 
-    .profile-placeholder-text {
-      font-family: var(--font-display);
-      font-size: 0.7rem;
-      letter-spacing: 0.15em;
-      text-transform: uppercase;
-      color: var(--text-muted);
-      text-align: center;
-      padding: 1.5rem;
+    .profile-photo {
+      width: 100%;
+      aspect-ratio: 3/4;
+      object-fit: cover;
+      object-position: center top;
+      display: block;
+      filter: grayscale(20%);
+      transition: filter 0.4s;
+      border: 1px solid var(--border);
     }
+
+    .profile-photo:hover { filter: grayscale(0%); }
 
     /* ─── EDUCATION ─── */
     .education {
@@ -280,6 +279,11 @@
       <h1 class="page-title fade-up delay-1">
         The<br>person<br><span class="outline">behind it.</span>
       </h1>
+      <div class="fade-up delay-2" style="margin-top:2rem;">
+        <div class="profile-photo-wrap">
+          <img src="assets/images/profile.jpg" alt="Matheesha Prabhath" class="profile-photo" />
+        </div>
+      </div>
     </div>
 
     <div class="hero-bio fade-up delay-2">
