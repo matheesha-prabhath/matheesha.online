@@ -259,13 +259,20 @@
       line-height: 1.6;
     }
 
-    @media (max-width: 900px) {
-      .page-hero, .services, .gallery-section, .process { padding-left: 1.5rem; padding-right: 1.5rem; }
+
+    @media (max-width: 768px) {
+      .page-hero, .services, .gallery-section, .process { padding: 3rem 1.5rem; }
+      .page-title { font-size: clamp(2.5rem,10vw,5rem); }
       .services-grid { grid-template-columns: 1fr; }
       .gallery-intro { grid-template-columns: 1fr; gap: 1.5rem; }
       .gallery-grid { grid-template-columns: 1fr 1fr; }
       .gallery-item.tall { grid-row: auto; }
       .process-list { grid-template-columns: 1fr 1fr; }
+    }
+    @media (max-width: 480px) {
+      .page-hero, .services, .gallery-section, .process { padding: 2.5rem 1.2rem; }
+      .gallery-grid { grid-template-columns: 1fr; }
+      .process-list { grid-template-columns: 1fr; }
     }
   </style>
 </head>
@@ -280,7 +287,19 @@
     <li><a href="about.html">About</a></li>
     <li><a href="contact.html">Contact</a></li>
   </ul>
+  <button class="nav-hamburger" id="hamburger" aria-label="Menu">
+    <span></span><span></span><span></span>
+  </button>
 </nav>
+
+<!-- MOBILE MENU -->
+<div class="nav-mobile-menu" id="mobileMenu">
+  <a href="index.html">Home</a>
+  <a href="work.html">Work</a>
+  <a href="creative.html" class="active">Creative</a>
+  <a href="about.html">About</a>
+  <a href="contact.html">Contact</a>
+</div>
 
 <main>
   <section class="page-hero">

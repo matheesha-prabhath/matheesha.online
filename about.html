@@ -231,13 +231,20 @@
       letter-spacing: -0.03em;
     }
 
-    @media (max-width: 900px) {
-      .page-hero { grid-template-columns: 1fr; gap: 3rem; padding: 4rem 1.5rem; }
-      .education, .skills-section, .achievements, .cv-section { padding-left: 1.5rem; padding-right: 1.5rem; }
+
+    @media (max-width: 768px) {
+      .page-hero { grid-template-columns: 1fr; gap: 2rem; padding: 3rem 1.5rem; }
+      .page-title { font-size: clamp(2.5rem,10vw,5rem); }
+      .education, .skills-section, .achievements, .cv-section { padding: 3rem 1.5rem; }
       .edu-item { grid-template-columns: 1fr; gap: 0.5rem; }
-      .skills-grid { grid-template-columns: 1fr; }
+      .skills-grid { grid-template-columns: 1fr 1fr; }
       .achievement-list { grid-template-columns: 1fr; }
       .cv-section { flex-direction: column; align-items: flex-start; }
+    }
+    @media (max-width: 480px) {
+      .page-hero, .education, .skills-section, .achievements, .cv-section { padding: 2.5rem 1.2rem; }
+      .skills-grid { grid-template-columns: 1fr; }
+      .cv-section .btn { width: 100%; justify-content: center; }
     }
   </style>
 </head>
@@ -252,7 +259,19 @@
     <li><a href="about.html" class="active">About</a></li>
     <li><a href="contact.html">Contact</a></li>
   </ul>
+  <button class="nav-hamburger" id="hamburger" aria-label="Menu">
+    <span></span><span></span><span></span>
+  </button>
 </nav>
+
+<!-- MOBILE MENU -->
+<div class="nav-mobile-menu" id="mobileMenu">
+  <a href="index.html">Home</a>
+  <a href="work.html">Work</a>
+  <a href="creative.html">Creative</a>
+  <a href="about.html" class="active">About</a>
+  <a href="contact.html">Contact</a>
+</div>
 
 <main>
   <section class="page-hero">

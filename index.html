@@ -22,10 +22,8 @@
     .hero::before {
       content: '';
       position: absolute;
-      top: -20%;
-      right: -10%;
-      width: 600px;
-      height: 600px;
+      top: -20%; right: -10%;
+      width: 600px; height: 600px;
       background: radial-gradient(circle, rgba(200,240,74,0.06) 0%, transparent 70%);
       pointer-events: none;
     }
@@ -42,6 +40,7 @@
       border-radius: 50%;
       background: var(--accent);
       animation: pulse 2s infinite;
+      flex-shrink: 0;
     }
 
     @keyframes pulse {
@@ -60,7 +59,7 @@
 
     .hero-title {
       font-family: var(--font-display);
-      font-size: clamp(3.5rem, 6vw, 6rem);
+      font-size: clamp(3rem, 5.5vw, 6rem);
       font-weight: 800;
       line-height: 0.95;
       letter-spacing: -0.04em;
@@ -68,7 +67,6 @@
     }
 
     .hero-title .line { display: block; overflow: hidden; }
-
     .hero-title .outline {
       -webkit-text-stroke: 1px rgba(240,237,232,0.3);
       color: transparent;
@@ -82,11 +80,7 @@
       margin-bottom: 2.5rem;
     }
 
-    .hero-cta {
-      display: flex;
-      gap: 1rem;
-      flex-wrap: wrap;
-    }
+    .hero-cta { display: flex; gap: 1rem; flex-wrap: wrap; }
 
     /* ─── HERO RIGHT ─── */
     .hero-right {
@@ -96,44 +90,105 @@
       align-items: flex-end;
     }
 
+    /* ─── PROFILE PHOTO ─── */
+    .profile-photo-wrap {
+      width: 100%;
+      max-width: 340px;
+      position: relative;
+    }
+
+    .profile-photo-wrap::before {
+      content: '';
+      position: absolute;
+      inset: -1px;
+      border: 1px solid var(--border);
+      pointer-events: none;
+      z-index: 1;
+    }
+
+    .profile-photo-wrap::after {
+      content: '';
+      position: absolute;
+      bottom: -8px; right: -8px;
+      width: 60%; height: 60%;
+      border-right: 2px solid var(--accent);
+      border-bottom: 2px solid var(--accent);
+      pointer-events: none;
+    }
+
+    .profile-photo {
+      width: 100%;
+      aspect-ratio: 3/4;
+      object-fit: cover;
+      object-position: center top;
+      display: block;
+      filter: grayscale(20%);
+      transition: filter 0.4s;
+    }
+
+    .profile-photo:hover { filter: grayscale(0%); }
+
+    /* Placeholder shown when no photo uploaded yet */
+    .profile-placeholder {
+      width: 100%;
+      aspect-ratio: 3/4;
+      background: var(--surface);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 1rem;
+      border: 1px dashed var(--border);
+    }
+
+    .profile-placeholder svg { opacity: 0.2; }
+
+    .profile-placeholder p {
+      font-family: var(--font-display);
+      font-size: 0.7rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--text-muted);
+      text-align: center;
+      padding: 0 1.5rem;
+    }
+
+    /* ─── STATS + SOCIAL ─── */
     .hero-stat-grid {
       display: grid;
       grid-template-columns: 1fr 1fr;
       gap: 1px;
       background: var(--border);
       width: 100%;
-      max-width: 380px;
+      max-width: 340px;
     }
 
     .hero-stat {
       background: var(--surface);
-      padding: 1.8rem;
+      padding: 1.5rem;
     }
 
     .hero-stat .num {
       font-family: var(--font-display);
-      font-size: 2.5rem;
+      font-size: 2.2rem;
       font-weight: 800;
       color: var(--text);
       letter-spacing: -0.04em;
       line-height: 1;
-      margin-bottom: 0.4rem;
+      margin-bottom: 0.3rem;
     }
 
     .hero-stat .num span { color: var(--accent); }
 
     .hero-stat .label {
-      font-size: 0.75rem;
+      font-size: 0.7rem;
       color: var(--text-muted);
       font-family: var(--font-display);
       letter-spacing: 0.08em;
       text-transform: uppercase;
     }
 
-    .social-row {
-      display: flex;
-      gap: 1rem;
-    }
+    .social-row { display: flex; gap: 1rem; flex-wrap: wrap; }
 
     .social-link {
       display: inline-flex;
@@ -151,10 +206,7 @@
       transition: all 0.2s;
     }
 
-    .social-link:hover {
-      border-color: var(--accent);
-      color: var(--accent);
-    }
+    .social-link:hover { border-color: var(--accent); color: var(--accent); }
 
     /* ─── MARQUEE ─── */
     .marquee-wrap {
@@ -199,7 +251,7 @@
 
     .about-heading {
       font-family: var(--font-display);
-      font-size: clamp(2.5rem, 4vw, 3.5rem);
+      font-size: clamp(2.2rem, 4vw, 3.5rem);
       font-weight: 800;
       letter-spacing: -0.04em;
       line-height: 1;
@@ -218,16 +270,10 @@
       margin-bottom: 2rem;
     }
 
-    .skill-tags {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 0.5rem;
-    }
+    .skill-tags { display: flex; flex-wrap: wrap; gap: 0.5rem; }
 
     /* ─── WORK PREVIEW ─── */
-    .work-preview {
-      padding: 6rem 3rem;
-    }
+    .work-preview { padding: 6rem 3rem; }
 
     .section-header {
       display: flex;
@@ -238,14 +284,14 @@
 
     .section-title {
       font-family: var(--font-display);
-      font-size: clamp(1.8rem, 3vw, 2.5rem);
+      font-size: clamp(1.6rem, 3vw, 2.5rem);
       font-weight: 800;
       letter-spacing: -0.03em;
     }
 
     .project-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      grid-template-columns: repeat(2, 1fr);
       gap: 1px;
       background: var(--border);
     }
@@ -270,14 +316,8 @@
       transition: all 0.3s;
     }
 
-    .project-card:hover {
-      background: var(--bg3);
-    }
-
-    .project-card:hover::after {
-      color: var(--accent);
-      transform: translate(2px, -2px);
-    }
+    .project-card:hover { background: var(--bg3); }
+    .project-card:hover::after { color: var(--accent); transform: translate(2px, -2px); }
 
     .project-num {
       font-family: var(--font-display);
@@ -290,7 +330,7 @@
 
     .project-name {
       font-family: var(--font-display);
-      font-size: 1.3rem;
+      font-size: 1.2rem;
       font-weight: 700;
       letter-spacing: -0.02em;
       margin-bottom: 0.8rem;
@@ -298,21 +338,17 @@
     }
 
     .project-desc {
-      font-size: 0.88rem;
+      font-size: 0.85rem;
       color: var(--text-muted);
       line-height: 1.6;
       margin-bottom: 1.5rem;
     }
 
-    .project-tech {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 0.4rem;
-    }
+    .project-tech { display: flex; flex-wrap: wrap; gap: 0.4rem; }
 
     .tech-chip {
       font-family: var(--font-display);
-      font-size: 0.65rem;
+      font-size: 0.62rem;
       font-weight: 600;
       letter-spacing: 0.1em;
       text-transform: uppercase;
@@ -322,19 +358,71 @@
       color: var(--text-muted);
     }
 
-    /* ─── RESPONSIVE ─── */
+    /* ─── PAGE RESPONSIVE ─── */
     @media (max-width: 900px) {
       .hero {
         grid-template-columns: 1fr;
-        padding: 4rem 1.5rem 3rem;
+        padding: 3rem 1.5rem 2.5rem;
         min-height: auto;
-        gap: 3rem;
+        gap: 2.5rem;
       }
-      .hero-right { align-items: flex-start; }
+
+      .hero-right {
+        align-items: flex-start;
+        flex-direction: row;
+        flex-wrap: wrap;
+        gap: 1.5rem;
+      }
+
+      .profile-photo-wrap {
+        max-width: 160px;
+        flex-shrink: 0;
+      }
+
+      .hero-stat-grid {
+        max-width: 100%;
+        flex: 1;
+        min-width: 200px;
+      }
+
+      .social-row { width: 100%; }
+
+      .about-strip {
+        grid-template-columns: 1fr;
+        gap: 2rem;
+        padding: 3.5rem 1.5rem;
+      }
+
+      .work-preview { padding: 3.5rem 1.5rem; }
+
+      .section-header {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 1rem;
+      }
+
+      .project-grid { grid-template-columns: 1fr; }
+    }
+
+    @media (max-width: 480px) {
+      .hero { padding: 2.5rem 1.2rem 2rem; }
+
+      .hero-right {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+
+      .profile-photo-wrap { max-width: 140px; }
+
       .hero-stat-grid { max-width: 100%; }
-      .about-strip { grid-template-columns: 1fr; gap: 2rem; padding: 4rem 1.5rem; }
-      .work-preview { padding: 4rem 1.5rem; }
-      .section-header { flex-direction: column; align-items: flex-start; gap: 1rem; }
+
+      .hero-cta { flex-direction: column; }
+      .hero-cta .btn { width: 100%; justify-content: center; }
+
+      .about-strip { padding: 3rem 1.2rem; }
+      .work-preview { padding: 3rem 1.2rem; }
+
+      .project-card { padding: 1.5rem; }
     }
   </style>
 </head>
@@ -349,7 +437,19 @@
     <li><a href="about.html">About</a></li>
     <li><a href="contact.html">Contact</a></li>
   </ul>
+  <button class="nav-hamburger" id="hamburger" aria-label="Menu">
+    <span></span><span></span><span></span>
+  </button>
 </nav>
+
+<!-- MOBILE MENU -->
+<div class="nav-mobile-menu" id="mobileMenu">
+  <a href="index.html" class="active">Home</a>
+  <a href="work.html">Work</a>
+  <a href="creative.html">Creative</a>
+  <a href="about.html">About</a>
+  <a href="contact.html">Contact</a>
+</div>
 
 <main>
   <!-- HERO -->
@@ -374,13 +474,26 @@
     </div>
 
     <div class="hero-right fade-up delay-3">
+      <!-- PROFILE PHOTO -->
+      <!-- To add your photo: replace the placeholder below with:
+           <div class="profile-photo-wrap">
+             <img src="assets/images/profile.jpg" alt="Matheesha Prabhath" class="profile-photo" />
+           </div>
+      -->
+      <div class="profile-photo-wrap">
+        <div class="profile-placeholder">
+          <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+          <p>Add your photo here</p>
+        </div>
+      </div>
+
       <div class="hero-stat-grid">
         <div class="hero-stat">
           <div class="num">3<span>+</span></div>
           <div class="label">Years Exp.</div>
         </div>
         <div class="hero-stat">
-          <div class="num">4<span>+</span></div>
+          <div class="num">5<span>+</span></div>
           <div class="label">Projects</div>
         </div>
         <div class="hero-stat">
@@ -388,10 +501,11 @@
           <div class="label">Companies</div>
         </div>
         <div class="hero-stat">
-          <div class="num" style="font-size:1.6rem;">MERN</div>
+          <div class="num" style="font-size:1.4rem;">MERN</div>
           <div class="label">Stack</div>
         </div>
       </div>
+
       <div class="social-row">
         <a href="https://github.com/matheesha-prabhath" target="_blank" class="social-link">
           <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.3 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 21.795 24 17.295 24 12c0-6.63-5.37-12-12-12"/></svg>
