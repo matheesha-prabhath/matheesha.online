@@ -1,630 +1,794 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Matheesha Prabhath — Software Engineer</title>
-  <meta name="description" content="Software Engineer & Creative Media Specialist based in Sri Lanka. Full-stack developer with expertise in MERN stack." />
-  <link rel="stylesheet" href="assets/css/style.css" />
-  <style>
-    /* ─── HERO ─── */
-    .hero {
-      min-height: calc(100vh - 4.5rem);
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 4rem;
-      align-items: center;
-      padding: 6rem 3rem 4rem;
-      position: relative;
-      overflow: hidden;
-    }
-
-    .hero::before {
-      content: '';
-      position: absolute;
-      top: -20%; right: -10%;
-      width: 600px; height: 600px;
-      background: radial-gradient(circle, rgba(200,240,74,0.06) 0%, transparent 70%);
-      pointer-events: none;
-    }
-
-    .hero-eyebrow {
-      display: flex;
-      align-items: center;
-      gap: 0.75rem;
-      margin-bottom: 1.5rem;
-    }
-
-    .status-dot {
-      width: 8px; height: 8px;
-      border-radius: 50%;
-      background: var(--accent);
-      animation: pulse 2s infinite;
-      flex-shrink: 0;
-    }
-
-    @keyframes pulse {
-      0%, 100% { box-shadow: 0 0 0 0 rgba(200,240,74,0.4); }
-      50% { box-shadow: 0 0 0 6px rgba(200,240,74,0); }
-    }
-
-    .status-text {
-      font-family: var(--font-display);
-      font-size: 0.72rem;
-      font-weight: 600;
-      letter-spacing: 0.18em;
-      text-transform: uppercase;
-      color: var(--accent);
-    }
-
-    .hero-title {
-      font-family: var(--font-display);
-      font-size: clamp(3rem, 5.5vw, 6rem);
-      font-weight: 800;
-      line-height: 0.95;
-      letter-spacing: -0.04em;
-      margin-bottom: 1.5rem;
-    }
-
-    .hero-title .line { display: block; overflow: hidden; }
-    .hero-title .outline {
-      -webkit-text-stroke: 1px rgba(240,237,232,0.3);
-      color: transparent;
-    }
-
-    .hero-desc {
-      font-size: 1rem;
-      color: var(--text-sub);
-      max-width: 440px;
-      line-height: 1.7;
-      margin-bottom: 2.5rem;
-    }
-
-    .hero-cta { display: flex; gap: 1rem; flex-wrap: wrap; }
-
-    /* ─── HERO RIGHT ─── */
-    .hero-right {
-      display: flex;
-      flex-direction: column;
-      gap: 1.5rem;
-      align-items: flex-end;
-    }
-
-    /* ─── PROFILE PHOTO ─── */
-    .profile-photo-wrap {
-      width: 100%;
-      max-width: 340px;
-      position: relative;
-    }
-
-    .profile-photo-wrap::before {
-      content: '';
-      position: absolute;
-      inset: -1px;
-      border: 1px solid var(--border);
-      pointer-events: none;
-      z-index: 1;
-    }
-
-    .profile-photo-wrap::after {
-      content: '';
-      position: absolute;
-      bottom: -8px; right: -8px;
-      width: 60%; height: 60%;
-      border-right: 2px solid var(--accent);
-      border-bottom: 2px solid var(--accent);
-      pointer-events: none;
-    }
-
-    .profile-photo {
-      width: 100%;
-      aspect-ratio: 3/4;
-      object-fit: cover;
-      object-position: center top;
-      display: block;
-      filter: grayscale(20%);
-      transition: filter 0.4s;
-    }
-
-    .profile-photo:hover { filter: grayscale(0%); }
-
-
-
-    /* ─── STATS + SOCIAL ─── */
-    .hero-stat-grid {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 1px;
-      background: var(--border);
-      width: 100%;
-      max-width: 340px;
-    }
-
-    .hero-stat {
-      background: var(--surface);
-      padding: 1.5rem;
-    }
-
-    .hero-stat .num {
-      font-family: var(--font-display);
-      font-size: 2.2rem;
-      font-weight: 800;
-      color: var(--text);
-      letter-spacing: -0.04em;
-      line-height: 1;
-      margin-bottom: 0.3rem;
-    }
-
-    .hero-stat .num span { color: var(--accent); }
-
-    .hero-stat .label {
-      font-size: 0.7rem;
-      color: var(--text-muted);
-      font-family: var(--font-display);
-      letter-spacing: 0.08em;
-      text-transform: uppercase;
-    }
-
-    .social-row { display: flex; gap: 1rem; flex-wrap: wrap; }
-
-    .social-link {
-      display: inline-flex;
-      align-items: center;
-      gap: 0.5rem;
-      padding: 0.6rem 1.2rem;
-      border: 1px solid var(--border);
-      font-family: var(--font-display);
-      font-size: 0.72rem;
-      font-weight: 600;
-      letter-spacing: 0.1em;
-      text-transform: uppercase;
-      color: var(--text-muted);
-      text-decoration: none;
-      transition: all 0.2s;
-    }
-
-    .social-link:hover { border-color: var(--accent); color: var(--accent); }
-
-    /* ─── MARQUEE ─── */
-    .marquee-wrap {
-      border-top: 1px solid var(--border);
-      border-bottom: 1px solid var(--border);
-      overflow: hidden;
-      padding: 1rem 0;
-      white-space: nowrap;
-    }
-
-    .marquee-inner {
-      display: inline-block;
-      animation: marquee 22s linear infinite;
-    }
-
-    .marquee-inner span {
-      font-family: var(--font-display);
-      font-size: 0.75rem;
-      font-weight: 600;
-      letter-spacing: 0.2em;
-      text-transform: uppercase;
-      color: var(--text-muted);
-      padding: 0 2.5rem;
-    }
-
-    .marquee-inner span.accent { color: var(--accent); }
-
-    @keyframes marquee {
-      0% { transform: translateX(0); }
-      100% { transform: translateX(-50%); }
-    }
-
-    /* ─── ABOUT STRIP ─── */
-    .about-strip {
-      padding: 6rem 3rem;
-      display: grid;
-      grid-template-columns: 1fr 1.6fr;
-      gap: 6rem;
-      align-items: start;
-      border-bottom: 1px solid var(--border);
-    }
-
-    .about-heading {
-      font-family: var(--font-display);
-      font-size: clamp(2.2rem, 4vw, 3.5rem);
-      font-weight: 800;
-      letter-spacing: -0.04em;
-      line-height: 1;
-    }
-
-    .about-heading em {
-      font-style: italic;
-      font-weight: 400;
-      color: var(--text-sub);
-    }
-
-    .about-text {
-      color: var(--text-sub);
-      font-size: 1rem;
-      line-height: 1.75;
-      margin-bottom: 2rem;
-    }
-
-    .skill-tags { display: flex; flex-wrap: wrap; gap: 0.5rem; }
-
-    /* ─── WORK PREVIEW ─── */
-    .work-preview { padding: 6rem 3rem; }
-
-    .section-header {
-      display: flex;
-      align-items: flex-end;
-      justify-content: space-between;
-      margin-bottom: 3rem;
-    }
-
-    .section-title {
-      font-family: var(--font-display);
-      font-size: clamp(1.6rem, 3vw, 2.5rem);
-      font-weight: 800;
-      letter-spacing: -0.03em;
-    }
-
-    .project-grid {
-      display: grid;
-      grid-template-columns: repeat(2, 1fr);
-      gap: 1px;
-      background: var(--border);
-    }
-
-    .project-card {
-      background: var(--surface);
-      padding: 2.5rem;
-      text-decoration: none;
-      color: inherit;
-      display: block;
-      transition: background 0.3s;
-      position: relative;
-      overflow: hidden;
-    }
-
-    .project-card::after {
-      content: '↗';
-      position: absolute;
-      top: 1.5rem; right: 1.5rem;
-      font-size: 1.2rem;
-      color: var(--text-muted);
-      transition: all 0.3s;
-    }
-
-    .project-card:hover { background: var(--bg3); }
-    .project-card:hover::after { color: var(--accent); transform: translate(2px, -2px); }
-
-    .project-num {
-      font-family: var(--font-display);
-      font-size: 0.7rem;
-      font-weight: 700;
-      letter-spacing: 0.15em;
-      color: var(--text-muted);
-      margin-bottom: 1.5rem;
-    }
-
-    .project-name {
-      font-family: var(--font-display);
-      font-size: 1.2rem;
-      font-weight: 700;
-      letter-spacing: -0.02em;
-      margin-bottom: 0.8rem;
-      color: var(--text);
-    }
-
-    .project-desc {
-      font-size: 0.85rem;
-      color: var(--text-muted);
-      line-height: 1.6;
-      margin-bottom: 1.5rem;
-    }
-
-    .project-tech { display: flex; flex-wrap: wrap; gap: 0.4rem; }
-
-    .tech-chip {
-      font-family: var(--font-display);
-      font-size: 0.62rem;
-      font-weight: 600;
-      letter-spacing: 0.1em;
-      text-transform: uppercase;
-      padding: 0.25rem 0.6rem;
-      background: var(--bg3);
-      border: 1px solid var(--border);
-      color: var(--text-muted);
-    }
-
-    /* ─── PAGE RESPONSIVE ─── */
-    @media (max-width: 900px) {
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Matheesha Prabhath — Software Engineer</title>
+    <meta
+      name="description"
+      content="Software Engineer & Creative Media Specialist based in Sri Lanka. Full-stack developer with expertise in MERN stack."
+    />
+    <link rel="stylesheet" href="assets/css/style.css" />
+    <style>
+      /* ─── HERO ─── */
       .hero {
-        grid-template-columns: 1fr;
-        padding: 3rem 1.5rem 2.5rem;
-        min-height: auto;
-        gap: 2rem;
+        min-height: calc(100vh - 4.5rem);
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 4rem;
+        align-items: center;
+        padding: 6rem 3rem 4rem;
+        position: relative;
+        overflow: hidden;
       }
 
-      .hero-title { font-size: clamp(2.8rem, 11vw, 5rem); }
-
-      .hero-right {
-        align-items: flex-start;
-        flex-direction: column;
-        gap: 1.5rem;
+      .hero::before {
+        content: "";
+        position: absolute;
+        top: -20%;
+        right: -10%;
+        width: 600px;
+        height: 600px;
+        background: radial-gradient(
+          circle,
+          rgba(200, 240, 74, 0.06) 0%,
+          transparent 70%
+        );
+        pointer-events: none;
       }
 
-      .profile-photo-wrap {
-        max-width: 200px;
+      .hero-eyebrow {
+        display: flex;
+        align-items: center;
+        gap: 0.75rem;
+        margin-bottom: 1.5rem;
       }
 
-      .hero-stat-grid { max-width: 100%; }
-      .social-row { width: 100%; }
-
-      .about-strip {
-        grid-template-columns: 1fr;
-        gap: 2rem;
-        padding: 3.5rem 1.5rem;
-      }
-
-      .work-preview { padding: 3.5rem 1.5rem; }
-
-      .section-header {
-        flex-direction: column;
-        align-items: flex-start;
-        gap: 1rem;
-      }
-
-      .project-grid { grid-template-columns: 1fr; }
-    }
-
-    @media (max-width: 600px) {
-      .hero { padding: 2.5rem 1.2rem 2rem; }
-
-      /* Fix name overflow — scale down to always fit */
-      .hero-title { font-size: clamp(2.4rem, 9.5vw, 4rem); letter-spacing: -0.03em; }
-
-      .hero-desc { font-size: 0.92rem; }
-
-      /* Photo row: side by side with stats on mobile */
-      .hero-right {
-        flex-direction: row;
-        flex-wrap: wrap;
-        align-items: flex-start;
-        gap: 1rem;
-      }
-
-      .profile-photo-wrap {
-        max-width: 130px;
+      .status-dot {
+        width: 8px;
+        height: 8px;
+        border-radius: 50%;
+        background: var(--accent);
+        animation: pulse 2s infinite;
         flex-shrink: 0;
       }
 
-      .hero-stat-grid {
-        flex: 1;
-        min-width: 160px;
-        max-width: calc(100% - 150px);
+      @keyframes pulse {
+        0%,
+        100% {
+          box-shadow: 0 0 0 0 rgba(200, 240, 74, 0.4);
+        }
+        50% {
+          box-shadow: 0 0 0 6px rgba(200, 240, 74, 0);
+        }
       }
 
-      .social-row { width: 100%; flex-wrap: wrap; }
+      .status-text {
+        font-family: var(--font-display);
+        font-size: 0.72rem;
+        font-weight: 600;
+        letter-spacing: 0.18em;
+        text-transform: uppercase;
+        color: var(--accent);
+      }
 
-      /* Full-width buttons stacked */
-      .hero-cta { flex-direction: column; width: 100%; }
-      .hero-cta .btn { width: 100%; justify-content: center; }
+      .hero-title {
+        font-family: var(--font-display);
+        font-size: clamp(3rem, 5.5vw, 6rem);
+        font-weight: 800;
+        line-height: 0.95;
+        letter-spacing: -0.04em;
+        margin-bottom: 1.5rem;
+      }
 
-      .about-strip { padding: 3rem 1.2rem; }
-      .work-preview { padding: 3rem 1.2rem; }
-      .project-card { padding: 1.5rem; }
-    }
-  </style>
-</head>
-<body>
+      .hero-title .line {
+        display: block;
+        overflow: hidden;
+      }
+      .hero-title .outline {
+        -webkit-text-stroke: 1px rgba(240, 237, 232, 0.3);
+        color: transparent;
+      }
 
-<nav>
-  <a href="index.html" class="nav-logo">MP<span>.</span></a>
-  <ul class="nav-links">
-    <li><a href="index.html" class="active">Home</a></li>
-    <li><a href="work.html">Work</a></li>
-    <li><a href="creative.html">Creative</a></li>
-    <li><a href="about.html">About</a></li>
-    <li><a href="contact.html">Contact</a></li>
-  </ul>
-  <button class="nav-hamburger" id="hamburger" aria-label="Menu">
-    <span></span><span></span><span></span>
-  </button>
-</nav>
+      .hero-desc {
+        font-size: 1rem;
+        color: var(--text-sub);
+        max-width: 440px;
+        line-height: 1.7;
+        margin-bottom: 2.5rem;
+      }
 
-<!-- MOBILE MENU -->
-<div class="nav-mobile-menu" id="mobileMenu">
-  <a href="index.html" class="active">Home</a>
-  <a href="work.html">Work</a>
-  <a href="creative.html">Creative</a>
-  <a href="about.html">About</a>
-  <a href="contact.html">Contact</a>
-</div>
+      .hero-cta {
+        display: flex;
+        gap: 1rem;
+        flex-wrap: wrap;
+      }
 
-<main>
-  <!-- HERO -->
-  <section class="hero">
-    <div class="hero-left">
-      <div class="hero-eyebrow fade-up">
-        <span class="status-dot"></span>
-        <span class="status-text">Available for opportunities</span>
-      </div>
-      <h1 class="hero-title">
-        <span class="line fade-up delay-1">Matheesha</span>
-        <span class="line fade-up delay-2">Prabhath<span style="color:var(--accent)">.</span></span>
-        <span class="line outline fade-up delay-3">Engineer.</span>
-      </h1>
-      <p class="hero-desc fade-up delay-4">
-        Full-stack software engineer & creative media specialist. I build scalable web applications and craft compelling digital experiences.
-      </p>
-      <div class="hero-cta fade-up delay-5">
-        <a href="work.html" class="btn btn-primary">View Work</a>
-        <a href="contact.html" class="btn btn-outline">Get In Touch</a>
-      </div>
+      /* ─── HERO RIGHT ─── */
+      .hero-right {
+        display: flex;
+        flex-direction: column;
+        gap: 1.5rem;
+        align-items: flex-end;
+      }
+
+      /* ─── PROFILE PHOTO ─── */
+      .profile-photo-wrap {
+        width: 100%;
+        max-width: 340px;
+        position: relative;
+      }
+
+      .profile-photo-wrap::before {
+        content: "";
+        position: absolute;
+        inset: -1px;
+        border: 1px solid var(--border);
+        pointer-events: none;
+        z-index: 1;
+      }
+
+      .profile-photo-wrap::after {
+        content: "";
+        position: absolute;
+        bottom: -8px;
+        right: -8px;
+        width: 60%;
+        height: 60%;
+        border-right: 2px solid var(--accent);
+        border-bottom: 2px solid var(--accent);
+        pointer-events: none;
+      }
+
+      .profile-photo {
+        width: 100%;
+        aspect-ratio: 3/4;
+        object-fit: cover;
+        object-position: center top;
+        display: block;
+        filter: grayscale(20%);
+        transition: filter 0.4s;
+      }
+
+      .profile-photo:hover {
+        filter: grayscale(0%);
+      }
+
+      /* ─── STATS + SOCIAL ─── */
+      .hero-stat-grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 1px;
+        background: var(--border);
+        width: 100%;
+        max-width: 340px;
+      }
+
+      .hero-stat {
+        background: var(--surface);
+        padding: 1.5rem;
+      }
+
+      .hero-stat .num {
+        font-family: var(--font-display);
+        font-size: 2.2rem;
+        font-weight: 800;
+        color: var(--text);
+        letter-spacing: -0.04em;
+        line-height: 1;
+        margin-bottom: 0.3rem;
+      }
+
+      .hero-stat .num span {
+        color: var(--accent);
+      }
+
+      .hero-stat .label {
+        font-size: 0.7rem;
+        color: var(--text-muted);
+        font-family: var(--font-display);
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+      }
+
+      .social-row {
+        display: flex;
+        gap: 1rem;
+        flex-wrap: wrap;
+      }
+
+      .social-link {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.5rem;
+        padding: 0.6rem 1.2rem;
+        border: 1px solid var(--border);
+        font-family: var(--font-display);
+        font-size: 0.72rem;
+        font-weight: 600;
+        letter-spacing: 0.1em;
+        text-transform: uppercase;
+        color: var(--text-muted);
+        text-decoration: none;
+        transition: all 0.2s;
+      }
+
+      .social-link:hover {
+        border-color: var(--accent);
+        color: var(--accent);
+      }
+
+      /* ─── MARQUEE ─── */
+      .marquee-wrap {
+        border-top: 1px solid var(--border);
+        border-bottom: 1px solid var(--border);
+        overflow: hidden;
+        padding: 1rem 0;
+        white-space: nowrap;
+      }
+
+      .marquee-inner {
+        display: inline-block;
+        animation: marquee 22s linear infinite;
+      }
+
+      .marquee-inner span {
+        font-family: var(--font-display);
+        font-size: 0.75rem;
+        font-weight: 600;
+        letter-spacing: 0.2em;
+        text-transform: uppercase;
+        color: var(--text-muted);
+        padding: 0 2.5rem;
+      }
+
+      .marquee-inner span.accent {
+        color: var(--accent);
+      }
+
+      @keyframes marquee {
+        0% {
+          transform: translateX(0);
+        }
+        100% {
+          transform: translateX(-50%);
+        }
+      }
+
+      /* ─── ABOUT STRIP ─── */
+      .about-strip {
+        padding: 6rem 3rem;
+        display: grid;
+        grid-template-columns: 1fr 1.6fr;
+        gap: 6rem;
+        align-items: start;
+        border-bottom: 1px solid var(--border);
+      }
+
+      .about-heading {
+        font-family: var(--font-display);
+        font-size: clamp(2.2rem, 4vw, 3.5rem);
+        font-weight: 800;
+        letter-spacing: -0.04em;
+        line-height: 1;
+      }
+
+      .about-heading em {
+        font-style: italic;
+        font-weight: 400;
+        color: var(--text-sub);
+      }
+
+      .about-text {
+        color: var(--text-sub);
+        font-size: 1rem;
+        line-height: 1.75;
+        margin-bottom: 2rem;
+      }
+
+      .skill-tags {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0.5rem;
+      }
+
+      /* ─── WORK PREVIEW ─── */
+      .work-preview {
+        padding: 6rem 3rem;
+      }
+
+      .section-header {
+        display: flex;
+        align-items: flex-end;
+        justify-content: space-between;
+        margin-bottom: 3rem;
+      }
+
+      .section-title {
+        font-family: var(--font-display);
+        font-size: clamp(1.6rem, 3vw, 2.5rem);
+        font-weight: 800;
+        letter-spacing: -0.03em;
+      }
+
+      .project-grid {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 1px;
+        background: var(--border);
+      }
+
+      .project-card {
+        background: var(--surface);
+        padding: 2.5rem;
+        text-decoration: none;
+        color: inherit;
+        display: block;
+        transition: background 0.3s;
+        position: relative;
+        overflow: hidden;
+      }
+
+      .project-card::after {
+        content: "↗";
+        position: absolute;
+        top: 1.5rem;
+        right: 1.5rem;
+        font-size: 1.2rem;
+        color: var(--text-muted);
+        transition: all 0.3s;
+      }
+
+      .project-card:hover {
+        background: var(--bg3);
+      }
+      .project-card:hover::after {
+        color: var(--accent);
+        transform: translate(2px, -2px);
+      }
+
+      .project-num {
+        font-family: var(--font-display);
+        font-size: 0.7rem;
+        font-weight: 700;
+        letter-spacing: 0.15em;
+        color: var(--text-muted);
+        margin-bottom: 1.5rem;
+      }
+
+      .project-name {
+        font-family: var(--font-display);
+        font-size: 1.2rem;
+        font-weight: 700;
+        letter-spacing: -0.02em;
+        margin-bottom: 0.8rem;
+        color: var(--text);
+      }
+
+      .project-desc {
+        font-size: 0.85rem;
+        color: var(--text-muted);
+        line-height: 1.6;
+        margin-bottom: 1.5rem;
+      }
+
+      .project-tech {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0.4rem;
+      }
+
+      .tech-chip {
+        font-family: var(--font-display);
+        font-size: 0.62rem;
+        font-weight: 600;
+        letter-spacing: 0.1em;
+        text-transform: uppercase;
+        padding: 0.25rem 0.6rem;
+        background: var(--bg3);
+        border: 1px solid var(--border);
+        color: var(--text-muted);
+      }
+
+      /* ─── PAGE RESPONSIVE ─── */
+      @media (max-width: 900px) {
+        .hero {
+          grid-template-columns: 1fr;
+          padding: 3rem 1.5rem 2.5rem;
+          min-height: auto;
+          gap: 2rem;
+        }
+
+        .hero-title {
+          font-size: clamp(2.6rem, 10vw, 5rem);
+        }
+
+        .hero-right {
+          align-items: flex-start;
+          flex-direction: column;
+          gap: 1.5rem;
+          width: 100%;
+        }
+
+        .profile-photo-wrap {
+          max-width: 180px;
+        }
+
+        .hero-stat-grid {
+          width: 100%;
+          max-width: 100%;
+        }
+
+        .social-row {
+          width: 100%;
+        }
+
+        .about-strip {
+          grid-template-columns: 1fr;
+          gap: 2rem;
+          padding: 3.5rem 1.5rem;
+        }
+
+        .work-preview {
+          padding: 3.5rem 1.5rem;
+        }
+        .section-header {
+          flex-direction: column;
+          align-items: flex-start;
+          gap: 1rem;
+        }
+        .project-grid {
+          grid-template-columns: 1fr;
+        }
+      }
+
+      @media (max-width: 600px) {
+        .hero {
+          padding: 2rem 1.2rem;
+        }
+
+        .hero-title {
+          font-size: clamp(2.2rem, 9vw, 3.5rem);
+          letter-spacing: -0.03em;
+        }
+
+        .hero-desc {
+          font-size: 0.9rem;
+        }
+
+        .hero-right {
+          flex-direction: column;
+          width: 100%;
+          gap: 1.2rem;
+        }
+
+        /* Photo full width on small screens */
+        .profile-photo-wrap {
+          width: 100%;
+          max-width: 100%;
+        }
+
+        .profile-photo {
+          aspect-ratio: 4/3;
+          object-position: center 20%;
+        }
+
+        /* Stats grid takes full width, 2 cols */
+        .hero-stat-grid {
+          width: 100%;
+          max-width: 100%;
+        }
+
+        .hero-stat .num {
+          font-size: 1.8rem;
+        }
+
+        .social-row {
+          flex-wrap: wrap;
+          width: 100%;
+        }
+        .social-link {
+          flex: 1;
+          justify-content: center;
+        }
+
+        .hero-cta {
+          flex-direction: column;
+          width: 100%;
+        }
+        .hero-cta .btn {
+          width: 100%;
+          justify-content: center;
+        }
+
+        .about-strip {
+          padding: 3rem 1.2rem;
+        }
+        .work-preview {
+          padding: 3rem 1.2rem;
+        }
+        .project-card {
+          padding: 1.5rem;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <nav>
+      <a href="index.html" class="nav-logo">MP<span>.</span></a>
+      <ul class="nav-links">
+        <li><a href="index.html" class="active">Home</a></li>
+        <li><a href="work.html">Work</a></li>
+        <li><a href="creative.html">Creative</a></li>
+        <li><a href="about.html">About</a></li>
+        <li><a href="contact.html">Contact</a></li>
+      </ul>
+      <button class="nav-hamburger" id="hamburger" aria-label="Menu">
+        <span></span><span></span><span></span>
+      </button>
+    </nav>
+
+    <!-- MOBILE MENU -->
+    <div class="nav-mobile-menu" id="mobileMenu">
+      <a href="index.html" class="active">Home</a>
+      <a href="work.html">Work</a>
+      <a href="creative.html">Creative</a>
+      <a href="about.html">About</a>
+      <a href="contact.html">Contact</a>
     </div>
 
-    <div class="hero-right fade-up delay-3">
-      <!-- PROFILE PHOTO -->
-      <div class="profile-photo-wrap">
-        <img src="assets/images/profile.jpg" alt="Matheesha Prabhath" class="profile-photo" />
+    <main>
+      <!-- HERO -->
+      <section class="hero">
+        <div class="hero-left">
+          <div class="hero-eyebrow fade-up">
+            <span class="status-dot"></span>
+            <span class="status-text">Available for opportunities</span>
+          </div>
+          <h1 class="hero-title">
+            <span class="line fade-up delay-1">Matheesha</span>
+            <span class="line fade-up delay-2"
+              >Prabhath<span style="color: var(--accent)">.</span></span
+            >
+            <span class="line outline fade-up delay-3">Engineer.</span>
+          </h1>
+          <p class="hero-desc fade-up delay-4">
+            Full-stack software engineer & creative media specialist. I build
+            scalable web applications and craft compelling digital experiences.
+          </p>
+          <div class="hero-cta fade-up delay-5">
+            <a href="work.html" class="btn btn-primary">View Work</a>
+            <a href="contact.html" class="btn btn-outline">Get In Touch</a>
+          </div>
+        </div>
+
+        <div class="hero-right fade-up delay-3">
+          <!-- PROFILE PHOTO -->
+          <div class="profile-photo-wrap">
+            <img
+              src="assets/images/profile.jpg"
+              alt="Matheesha Prabhath"
+              class="profile-photo"
+            />
+          </div>
+
+          <div class="hero-stat-grid">
+            <div class="hero-stat">
+              <div class="num">3<span>+</span></div>
+              <div class="label">Years Exp.</div>
+            </div>
+            <div class="hero-stat">
+              <div class="num">5<span>+</span></div>
+              <div class="label">Projects</div>
+            </div>
+            <div class="hero-stat">
+              <div class="num">2<span>+</span></div>
+              <div class="label">Companies</div>
+            </div>
+            <div class="hero-stat">
+              <div class="num" style="font-size: 1.4rem">MERN</div>
+              <div class="label">Stack</div>
+            </div>
+          </div>
+
+          <div class="social-row">
+            <a
+              href="https://github.com/matheesha-prabhath"
+              target="_blank"
+              class="social-link"
+            >
+              <svg
+                width="14"
+                height="14"
+                viewBox="0 0 24 24"
+                fill="currentColor"
+              >
+                <path
+                  d="M12 0C5.37 0 0 5.37 0 12c0 5.3 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 21.795 24 17.295 24 12c0-6.63-5.37-12-12-12"
+                />
+              </svg>
+              GitHub
+            </a>
+            <a
+              href="https://www.linkedin.com/in/matheesha-prabhath/"
+              target="_blank"
+              class="social-link"
+            >
+              <svg
+                width="14"
+                height="14"
+                viewBox="0 0 24 24"
+                fill="currentColor"
+              >
+                <path
+                  d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 0 1-2.063-2.065 2.064 2.064 0 1 1 2.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"
+                />
+              </svg>
+              LinkedIn
+            </a>
+          </div>
+        </div>
+      </section>
+
+      <!-- MARQUEE -->
+      <div class="marquee-wrap">
+        <div class="marquee-inner">
+          <span>React.js</span><span class="accent">✦</span> <span>Node.js</span
+          ><span class="accent">✦</span> <span>MongoDB</span
+          ><span class="accent">✦</span> <span>Full-Stack Dev</span
+          ><span class="accent">✦</span> <span>Adobe Premiere</span
+          ><span class="accent">✦</span> <span>Photoshop</span
+          ><span class="accent">✦</span> <span>After Effects</span
+          ><span class="accent">✦</span> <span>UI Design</span
+          ><span class="accent">✦</span> <span>REST APIs</span
+          ><span class="accent">✦</span> <span>Git</span
+          ><span class="accent">✦</span> <span>React.js</span
+          ><span class="accent">✦</span> <span>Node.js</span
+          ><span class="accent">✦</span> <span>MongoDB</span
+          ><span class="accent">✦</span> <span>Full-Stack Dev</span
+          ><span class="accent">✦</span> <span>Adobe Premiere</span
+          ><span class="accent">✦</span> <span>Photoshop</span
+          ><span class="accent">✦</span> <span>After Effects</span
+          ><span class="accent">✦</span> <span>UI Design</span
+          ><span class="accent">✦</span> <span>REST APIs</span
+          ><span class="accent">✦</span> <span>Git</span
+          ><span class="accent">✦</span>
+        </div>
       </div>
 
-      <div class="hero-stat-grid">
-        <div class="hero-stat">
-          <div class="num">3<span>+</span></div>
-          <div class="label">Years Exp.</div>
+      <!-- ABOUT STRIP -->
+      <section class="about-strip">
+        <div class="scroll-reveal">
+          <span class="section-label">About</span>
+          <h2 class="about-heading">I build things<br /><em>that work.</em></h2>
         </div>
-        <div class="hero-stat">
-          <div class="num">5<span>+</span></div>
-          <div class="label">Projects</div>
+        <div class="scroll-reveal">
+          <p class="about-text">
+            Fresh graduate from SLIIT with a BSc (Hons) in Information
+            Technology specializing in Software Engineering. I blend technical
+            depth with creative sensibility — whether that's architecting a
+            scalable backend or cutting a compelling video for social media.
+          </p>
+          <p class="about-text">
+            Currently working as a Web Developer & Media Associate at Imashi
+            Publications, maintaining their e-commerce platform and handling all
+            creative media output.
+          </p>
+          <div class="skill-tags">
+            <span class="tag">JavaScript</span>
+            <span class="tag">React.js</span>
+            <span class="tag">Node.js</span>
+            <span class="tag">MongoDB</span>
+            <span class="tag">Express</span>
+            <span class="tag">Java</span>
+            <span class="tag">Tailwind CSS</span>
+            <span class="tag">REST API</span>
+            <span class="tag">Git</span>
+            <span class="tag">Postman</span>
+            <span class="tag">Premiere Pro</span>
+            <span class="tag">Photoshop</span>
+            <span class="tag">After Effects</span>
+          </div>
         </div>
-        <div class="hero-stat">
-          <div class="num">2<span>+</span></div>
-          <div class="label">Companies</div>
-        </div>
-        <div class="hero-stat">
-          <div class="num" style="font-size:1.4rem;">MERN</div>
-          <div class="label">Stack</div>
-        </div>
-      </div>
+      </section>
 
-      <div class="social-row">
-        <a href="https://github.com/matheesha-prabhath" target="_blank" class="social-link">
-          <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.3 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 21.795 24 17.295 24 12c0-6.63-5.37-12-12-12"/></svg>
-          GitHub
-        </a>
-        <a href="https://www.linkedin.com/in/matheesha-prabhath/" target="_blank" class="social-link">
-          <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 0 1-2.063-2.065 2.064 2.064 0 1 1 2.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
-          LinkedIn
-        </a>
-      </div>
-    </div>
-  </section>
-
-  <!-- MARQUEE -->
-  <div class="marquee-wrap">
-    <div class="marquee-inner">
-      <span>React.js</span><span class="accent">✦</span>
-      <span>Node.js</span><span class="accent">✦</span>
-      <span>MongoDB</span><span class="accent">✦</span>
-      <span>Full-Stack Dev</span><span class="accent">✦</span>
-      <span>Adobe Premiere</span><span class="accent">✦</span>
-      <span>Photoshop</span><span class="accent">✦</span>
-      <span>After Effects</span><span class="accent">✦</span>
-      <span>UI Design</span><span class="accent">✦</span>
-      <span>REST APIs</span><span class="accent">✦</span>
-      <span>Git</span><span class="accent">✦</span>
-      <span>React.js</span><span class="accent">✦</span>
-      <span>Node.js</span><span class="accent">✦</span>
-      <span>MongoDB</span><span class="accent">✦</span>
-      <span>Full-Stack Dev</span><span class="accent">✦</span>
-      <span>Adobe Premiere</span><span class="accent">✦</span>
-      <span>Photoshop</span><span class="accent">✦</span>
-      <span>After Effects</span><span class="accent">✦</span>
-      <span>UI Design</span><span class="accent">✦</span>
-      <span>REST APIs</span><span class="accent">✦</span>
-      <span>Git</span><span class="accent">✦</span>
-    </div>
-  </div>
-
-  <!-- ABOUT STRIP -->
-  <section class="about-strip">
-    <div class="scroll-reveal">
-      <span class="section-label">About</span>
-      <h2 class="about-heading">I build things<br><em>that work.</em></h2>
-    </div>
-    <div class="scroll-reveal">
-      <p class="about-text">
-        Fresh graduate from SLIIT with a BSc (Hons) in Information Technology specializing in Software Engineering. I blend technical depth with creative sensibility — whether that's architecting a scalable backend or cutting a compelling video for social media.
-      </p>
-      <p class="about-text">
-        Currently working as a Web Developer & Media Associate at Imashi Publications, maintaining their e-commerce platform and handling all creative media output.
-      </p>
-      <div class="skill-tags">
-        <span class="tag">JavaScript</span>
-        <span class="tag">React.js</span>
-        <span class="tag">Node.js</span>
-        <span class="tag">MongoDB</span>
-        <span class="tag">Express</span>
-        <span class="tag">Java</span>
-        <span class="tag">Tailwind CSS</span>
-        <span class="tag">REST API</span>
-        <span class="tag">Git</span>
-        <span class="tag">Postman</span>
-        <span class="tag">Premiere Pro</span>
-        <span class="tag">Photoshop</span>
-        <span class="tag">After Effects</span>
-      </div>
-    </div>
-  </section>
-
-  <!-- WORK PREVIEW -->
-  <section class="work-preview">
-    <div class="section-header scroll-reveal">
-      <div>
-        <span class="section-label">Projects</span>
-        <h2 class="section-title">Selected Work</h2>
-      </div>
-      <a href="work.html" class="btn btn-outline">All Projects</a>
-    </div>
-
-    <div class="project-grid">
-      <a href="https://imashibooks.com" target="_blank" class="project-card scroll-reveal">
-        <div class="project-num">01</div>
-        <div class="project-name">Imashi Books</div>
-        <p class="project-desc">Live e-commerce platform for Imashi Publications. Handles book listings, secure checkout, and order management for a Sri Lankan publisher.</p>
-        <div class="project-tech">
-          <span class="tech-chip">WordPress</span>
-          <span class="tech-chip">WooCommerce</span>
-          <span class="tech-chip">PHP</span>
+      <!-- WORK PREVIEW -->
+      <section class="work-preview">
+        <div class="section-header scroll-reveal">
+          <div>
+            <span class="section-label">Projects</span>
+            <h2 class="section-title">Selected Work</h2>
+          </div>
+          <a href="work.html" class="btn btn-outline">All Projects</a>
         </div>
-      </a>
-      <a href="https://github.com/matheesha-prabhath/Cafe_SecretAlly" target="_blank" class="project-card scroll-reveal">
-        <div class="project-num">02</div>
-        <div class="project-name">Cafe SecretAlly</div>
-        <p class="project-desc">MERN-based food delivery system with real-time order management and full restaurant workflow.</p>
-        <div class="project-tech">
-          <span class="tech-chip">MongoDB</span>
-          <span class="tech-chip">Express</span>
-          <span class="tech-chip">React</span>
-          <span class="tech-chip">Node.js</span>
-        </div>
-      </a>
-      <a href="https://github.com/Jobsy-App/Jobsy-App" target="_blank" class="project-card scroll-reveal">
-        <div class="project-num">03</div>
-        <div class="project-name">Jobsy App</div>
-        <p class="project-desc">Mobile job-seeking application connecting candidates with employers, built with Flutter and Firebase.</p>
-        <div class="project-tech">
-          <span class="tech-chip">Flutter</span>
-          <span class="tech-chip">Firebase</span>
-          <span class="tech-chip">Dart</span>
-        </div>
-      </a>
-      <a href="https://github.com/matheesha-prabhath/Culture-and-Tourism-Web" target="_blank" class="project-card scroll-reveal">
-        <div class="project-num">04</div>
-        <div class="project-name">Culture & Tourism Web</div>
-        <p class="project-desc">Full-stack web platform showcasing culture and tourism information, built on the MERN stack.</p>
-        <div class="project-tech">
-          <span class="tech-chip">MongoDB</span>
-          <span class="tech-chip">Express</span>
-          <span class="tech-chip">React</span>
-          <span class="tech-chip">Node.js</span>
-        </div>
-      </a>
-    </div>
-  </section>
-</main>
 
-<footer>
-  <p>© 2025 Matheesha Prabhath. All rights reserved.</p>
-  <ul class="footer-links">
-    <li><a href="index.html">Home</a></li>
-    <li><a href="work.html">Work</a></li>
-    <li><a href="creative.html">Creative</a></li>
-    <li><a href="about.html">About</a></li>
-    <li><a href="contact.html">Contact</a></li>
-  </ul>
-</footer>
+        <div class="project-grid">
+          <a
+            href="https://imashibooks.com"
+            target="_blank"
+            class="project-card scroll-reveal"
+          >
+            <div class="project-num">01</div>
+            <div class="project-name">Imashi Books</div>
+            <p class="project-desc">
+              Live e-commerce platform for Imashi Publications. Handles book
+              listings, secure checkout, and order management for a Sri Lankan
+              publisher.
+            </p>
+            <div class="project-tech">
+              <span class="tech-chip">WordPress</span>
+              <span class="tech-chip">WooCommerce</span>
+              <span class="tech-chip">PHP</span>
+            </div>
+          </a>
+          <a
+            href="https://github.com/matheesha-prabhath/Cafe_SecretAlly"
+            target="_blank"
+            class="project-card scroll-reveal"
+          >
+            <div class="project-num">02</div>
+            <div class="project-name">Cafe SecretAlly</div>
+            <p class="project-desc">
+              MERN-based food delivery system with real-time order management
+              and full restaurant workflow.
+            </p>
+            <div class="project-tech">
+              <span class="tech-chip">MongoDB</span>
+              <span class="tech-chip">Express</span>
+              <span class="tech-chip">React</span>
+              <span class="tech-chip">Node.js</span>
+            </div>
+          </a>
+          <a
+            href="https://github.com/Jobsy-App/Jobsy-App"
+            target="_blank"
+            class="project-card scroll-reveal"
+          >
+            <div class="project-num">03</div>
+            <div class="project-name">Jobsy App</div>
+            <p class="project-desc">
+              Mobile job-seeking application connecting candidates with
+              employers, built with Flutter and Firebase.
+            </p>
+            <div class="project-tech">
+              <span class="tech-chip">Flutter</span>
+              <span class="tech-chip">Firebase</span>
+              <span class="tech-chip">Dart</span>
+            </div>
+          </a>
+          <a
+            href="https://github.com/matheesha-prabhath/Culture-and-Tourism-Web"
+            target="_blank"
+            class="project-card scroll-reveal"
+          >
+            <div class="project-num">04</div>
+            <div class="project-name">Culture & Tourism Web</div>
+            <p class="project-desc">
+              Full-stack web platform showcasing culture and tourism
+              information, built on the MERN stack.
+            </p>
+            <div class="project-tech">
+              <span class="tech-chip">MongoDB</span>
+              <span class="tech-chip">Express</span>
+              <span class="tech-chip">React</span>
+              <span class="tech-chip">Node.js</span>
+            </div>
+          </a>
+        </div>
+      </section>
+    </main>
 
-<script src="assets/js/main.js"></script>
-</body>
+    <footer>
+      <p>© 2025 Matheesha Prabhath. All rights reserved.</p>
+      <ul class="footer-links">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="work.html">Work</a></li>
+        <li><a href="creative.html">Creative</a></li>
+        <li><a href="about.html">About</a></li>
+        <li><a href="contact.html">Contact</a></li>
+      </ul>
+    </footer>
+
+    <script src="assets/js/main.js"></script>
+  </body>
 </html>
